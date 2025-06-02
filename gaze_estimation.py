@@ -6,9 +6,8 @@ gaze_estimation.py
 import cv2
 import numpy as np
 import mediapipe as mp
-import time
 import math
-from config import OpenVINO_models
+from config_model import OpenVINO_models
 
 # ======================= 상수 정의 =======================
 
