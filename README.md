@@ -1,4 +1,4 @@
-<pre><code>```text 
+<pre><code>
 Pomodoro_with_state_tracking
 ├── demo  # 상태 추적 데모  
 │   ├── drowsy_estimation_with_FaceMesh.py
@@ -23,4 +23,4 @@ Pomodoro_with_state_tracking
 ├── main_base.py  # 뽀모도로 기능 없는 버전 
 ├── pomodoro_timer.py  # 뽀모도로 타이머 로직 
 └── requirement.txt
-  ```</code></pre>
+</code></pre>
