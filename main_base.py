@@ -9,7 +9,7 @@ import time
 import pandas as pd
 import altair as alt
 from datetime import datetime
-from config import Pose, FaceMesh
+from config_model import Pose, FaceMesh
 from gaze_estimation import is_focused
 from drowsy_estimation import is_drowsy
 
