@@ -1,3 +1,4 @@
+레포지터리
 <pre><code>
 Pomodoro_with_state_tracking
 ├── demo  # 상태 추적 데모  
@@ -25,4 +26,5 @@ Pomodoro_with_state_tracking
 └── requirement.txt
 </code></pre>
 
+실행
 streamlit run main.py
