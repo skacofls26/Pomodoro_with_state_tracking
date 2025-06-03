@@ -8,3 +8,5 @@ numpy
 pandas
 altair
 scipy
+streamlit-webrtc
+matplotlib
