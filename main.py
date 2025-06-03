@@ -1,7 +1,7 @@
 '''
 main.py
     User Interface 구현 로직 (뽀모도로 추가)
-    실행 명령어: streamlit run main_base.py
+    실행 명령어: streamlit run main.py
 '''
 
 import streamlit as st
