@@ -1,3 +1,4 @@
+레포지터리
 <pre><code>
 Pomodoro_with_state_tracking
 ├── demo  # 상태 추적 데모  
@@ -19,8 +20,17 @@ Pomodoro_with_state_tracking
 ├── config_model.py   # 모델 로드
 ├── drowsy_estimation.py   # 졸음 판단 로직
 ├── gaze_estimation.py  # 집중 판단 로직 
-├── main.py  # 메인 함수
-├── main_base.py  # 뽀모도로 기능 없는 버전 
+├── main.py  # 메인 실행
+├── main_base.py  # 뽀모도로 없는 버전 
 ├── pomodoro_timer.py  # 뽀모도로 타이머 로직 
 └── requirement.txt
 </code></pre>
+
+
+
+
+
+
+실행
+<br>
+streamlit run main.py
