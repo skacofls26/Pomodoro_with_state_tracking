@@ -30,5 +30,6 @@ Pomodoro_with_state_tracking
 
 
 ### 실행
-<br>
+<pre><code>
 streamlit run main.py
+</code></pre>
