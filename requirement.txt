@@ -1,5 +1,10 @@
-pip install streamlit
-pip install opencv-python
-pip install openvino
-pip install mediapipe opencv-python protobuf==3.20.3
-pip install plyer
+streamlit
+opencv-python
+openvino
+mediapipe
+protobuf==3.20.3
+plyer
+numpy
+pandas
+altair
+scipy

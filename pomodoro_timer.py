@@ -4,7 +4,6 @@ pomodoro.py
 '''
 import streamlit as st
 import pandas as pd
-import altair as alt
 from plyer import notification
 from datetime import datetime
 import time
