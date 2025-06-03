@@ -1,0 +1,9 @@
+[server]
+# 외부(브라우저 → Render 리버스 프록시) 요청 시 CORS 차단을 해제
+enableCORS = false
+
+# XSRF 토큰 검증을 해제. 리버스 프록시 환경에서 403 차단 방지
+enableXsrfProtection = false
+
+# 0.0.0.0 으로 바인딩
+address = "0.0.0.0"
