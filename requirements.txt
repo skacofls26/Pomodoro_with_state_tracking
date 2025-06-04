@@ -11,3 +11,4 @@ scipy
 streamlit-webrtc
 matplotlib
 os
+logging

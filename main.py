@@ -3,6 +3,14 @@ main.py
     User Interface 구현 로직 (뽀모도로)
     실행 명령어: streamlit run main.py
 '''
+# ─── 0) 로그 레벨 조정 ─────────────────────────────────────
+import logging
+
+logging.getLogger().setLevel(logging.WARNING)
+logging.getLogger("aiortc").setLevel(logging.WARNING)
+logging.getLogger("streamlit_webrtc").setLevel(logging.WARNING)
+
+# ──────────────────────────────────────────────────────────────
 import streamlit as st
 import cv2
 import numpy as np 
@@ -19,7 +27,7 @@ from pomodoro_timer import (
     transition_to_next_phase,
     draw_break_long_pies,
 )
-from streamlit_webrtc import webrtc_streamer, WebRtcMode
+
 import queue
 
 # ─────────────────────────── 1) 페이지·헤더 ────────────────────────────
@@ -245,6 +253,7 @@ with st.sidebar:
 
 
 # ========================= 4.5) WebRTC 스트림 (UI 숨김) =========================
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 webrtc_ctx = webrtc_streamer(
     key="camera",
     mode=WebRtcMode.SENDONLY,
