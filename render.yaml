@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: streamlit-app
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py
+    runtime: python
+    pythonVersion: 3.9.13
+    region: oregon
+    branch: main
