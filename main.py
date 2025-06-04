@@ -235,16 +235,23 @@ def main():
                 st.session_state.pomodoro_start = None
                 st.session_state.pomodoro_elapsed = 0.0
 
+                # 🔧 추가된 초기화
+                st.session_state.pomodoro_phase = "idle"
+                st.session_state.cycle_count = 1
+                st.session_state.session_count = 0
+                st.session_state.last_displayed_phase = None
+                st.session_state.prev_time_str = ""
+                
                 # 완료한 사이클 계산
                 phase = st.session_state.pomodoro_phase
-                cycles_done = (
-                    st.session_state.cycle_count - 1
-                    if phase == "focus"
-                    else st.session_state.cycle_count
-                )
+                if phase == "focus":
+                    cycles_done = st.session_state.cycle_count - 1
+                else:
+                    cycles_done = st.session_state.cycle_count
+                    
                 if cycles_done > 0:
                     st.session_state.congrats_msg = (
-                        f"축하합니다🎉 오늘은 {cycles_done}번째 사이클까지 클리어하셨습니다 🔥"
+                        f"오늘은 {cycles_done}번째 사이클까지 클리어하셨습니다 🎉"
                     )
             else:
                 st.write("실행 중인 뽀모도로가 없습니다")
@@ -411,24 +418,15 @@ def main():
                         if len(ear_y_values) < 5:
                             new_state = st.session_state.current_state
                         else:
-                            y_diff = max(ear_y_values) - min(ear_y_values)
-                            if y_diff >= 23:
-                                max_y_time = next(
-                                    t
-                                    for (t, y) in st.session_state.pose_history
-                                    if y == max(ear_y_values)
-                                )
-                                min_y_time = next(
-                                    t
-                                    for (t, y) in st.session_state.pose_history
-                                    if y == min(ear_y_values)
-                                )
-                                if max_y_time < min_y_time:
-                                    result = "외출 상태"
-                                else:
-                                    result = "졸음 상태"
-                            else:
+                            before_y = sum(ear_y_values[:3]) / 3
+                            after_y  = sum(ear_y_values[-3:]) / 3
+                            y_diff = abs(before_y - after_y)
+                            if y_diff < 20:
                                 result = "비집중 상태"
+                            elif before_y > after_y:
+                                result = "외출 상태"   # 이전 y값이 더 낮음 → 외출
+                            else:
+                                result = "졸음 상태"   # 이전 y값이 더 높음 → 졸음
 
                             # 외출/졸음 상태로 진입할 때
                             if result in ["외출 상태", "졸음 상태"]:
