@@ -19,6 +19,7 @@ from pomodoro_timer import (
     transition_to_next_phase,
     draw_break_long_pies,
 )
+from streamlit_webrtc import webrtc_streamer, WebRtcMode
 import queue
 
 # ─────────────────────────── 1) 페이지·헤더 ────────────────────────────
@@ -244,34 +245,14 @@ with st.sidebar:
 
 
 # ========================= 4.5) WebRTC 스트림 (UI 숨김) =========================
-if "webrtc_initialized" not in st.session_state:
-    st.session_state.webrtc_initialized = False
-
-if st.session_state.running and not st.session_state.webrtc_initialized:
-    if st.button("카메라 스트리밍 활성화"):
-        # 버튼을 누를 때 그제야 import/초기화
-        from streamlit_webrtc import webrtc_streamer, WebRtcMode
-
-        # ICE 서버 시도를 하지 않기 위해 빈 리스트로 설정
-        rtc_config = {"iceServers": []}
-
-        webrtc_ctx = webrtc_streamer(
-            key="camera",
-            mode=WebRtcMode.SENDONLY,
-            desired_playing_state=st.session_state.running,
-            rtc_configuration=rtc_config,
-            media_stream_constraints={"video": True, "audio": False},
-            video_html_attrs={"style": {"display": "none", "width": "0px", "height": "0px"}},
-        )
-        st.session_state.webrtc_ctx = webrtc_ctx
-        st.session_state.webrtc_initialized = True
-        st.experimental_rerun()
-    else:
-        st.write("▶ START 후, ‘카메라 스트리밍 활성화’ 버튼을 눌러주세요.")
-        st.stop()
-else:
-    # 이미 초기화된 경우 webrtc_ctx를 꺼내 쓸 수 있게 함
-    webrtc_ctx = st.session_state.get("webrtc_ctx", None)
+webrtc_ctx = webrtc_streamer(
+    key="camera",
+    mode=WebRtcMode.SENDONLY,
+    desired_playing_state=st.session_state.running,
+    rtc_configuration={"iceServers":[{"urls":["stun:stun.l.google.com:19302"]}]},
+    media_stream_constraints={"video": True, "audio": False},
+    video_html_attrs={"style": {"display": "none", "width": "0px", "height": "0px"}},
+)
 
 st.markdown(
     """

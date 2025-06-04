@@ -5,6 +5,7 @@ config.py
 '''
 import mediapipe as mp
 from openvino import Core
+import os
 
 
 # ======================= MediaPipe 모델 로딩 (좌표 추출용) =======================
@@ -28,8 +29,13 @@ Pose = mp_pose.Pose(  # 전신용 좌표 추출 모델
 
 
 # ======================= OpenVINO 모델 로딩 (시선 추정용) =======================
-def load_OpenVINO_model(core, model_path, device="CPU"):
-    model = core.read_model(model_path + ".xml")
+def load_OpenVINO_model(core: Core, relative_model_dir: str, device: str = "CPU"):
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    xml_filename = relative_model_dir + ".xml"
+    xml_path = os.path.join(base_dir, xml_filename)
+    if not os.path.isfile(xml_path):
+        raise FileNotFoundError(f"OpenVINO 모델 XML 파일을 찾을 수 없습니다:\n  예상 경로: {xml_path}")
+    model = core.read_model(xml_path)
     compiled = core.compile_model(model, device)
     input_name = compiled.inputs[0].get_any_name()
     return {"model": compiled, "input": input_name}

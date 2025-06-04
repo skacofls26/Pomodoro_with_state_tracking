@@ -10,3 +10,4 @@ altair
 scipy
 streamlit-webrtc
 matplotlib
+os
