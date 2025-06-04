@@ -1,6 +1,6 @@
 streamlit
 opencv-python
-openvino
+openvino==2023.1.0
 mediapipe
 protobuf==3.20.3
 plyer
