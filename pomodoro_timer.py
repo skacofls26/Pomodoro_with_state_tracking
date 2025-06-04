@@ -266,7 +266,7 @@ def transition_to_next_phase():
     elif phase == "break_short":
         notification.notify(
             title="뽀모도로 알림",
-            message=f"짧은 휴식이 끝났습니다. {cycle}번째 집중을 시작하세요!",
+            message=f"짧은 휴식이 끝났습니다. {cycle+1}번째 집중을 시작하세요!",
             timeout=5,
         )
         st.session_state.cycle_count     += 1
@@ -279,7 +279,7 @@ def transition_to_next_phase():
     elif phase == "break_long":
         notification.notify(
             title="뽀모도로 알림",
-            message=f"긴 휴식이 끝났습니다. {cycle}번째 집중을 시작합니다!",
+            message=f"긴 휴식이 끝났습니다. {cycle+1}번째 집중을 시작합니다!",
             timeout=5,
         )
         # 새 세트로 카운터 초기화하면서 **자동 재시작**
