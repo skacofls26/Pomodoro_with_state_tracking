@@ -25,7 +25,7 @@ Pomodoro_with_state_tracking
 ├── main.py  # 메인 실행
 ├── main_base.py  # 뽀모도로 없는 버전 
 ├── pomodoro_timer.py  # 뽀모도로 타이머 로직 
-└── requirement.txt
+└── requirements.txt
 </code></pre>
 
 
